@@ -25,11 +25,11 @@ namespace DDD.Core
       
     }
 
-    public class ReadModelUpdater<T>  where T : ReadMode, new()
+    public class ReadModelEventHandler<T>  where T : ReadMode, new()
     {
         private readonly IReadModeRepository<T> _repository;
 
-        public ReadModelUpdater(IReadModeRepository<T> repository)
+        public ReadModelEventHandler(IReadModeRepository<T> repository)
         {
             _repository = repository;
         }

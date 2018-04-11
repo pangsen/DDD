@@ -21,10 +21,10 @@ namespace DDD.Core
             ServiceRegistration = registration;
             ServiceRegistration.Register(x => registration);
             ServiceRegistration.Register<IBus, DefaultBus>(lifetime: Lifetime.Singleton);
-            ServiceRegistration.Register(x=> ServiceRegistration.CreateResolver());
+            ServiceRegistration.Register(x => ServiceRegistration.CreateResolver());
             ServiceRegistration.Register<IEventStore, LocalFileEventStore>(new object[] { ServiceRegistration.CreateResolver().Resolve<IBus>(), "D:\\temp" }, Lifetime.Singleton);
             ServiceRegistration.RegisterGenericType(typeof(QueryService<>), Lifetime.Singleton);
-            ServiceRegistration.RegisterGenericType(typeof(ReadModelUpdater<>));
+            ServiceRegistration.RegisterGenericType(typeof(ReadModelEventHandler<>));
             ServiceRegistration.RegisterGeneric(typeof(IRepository<>), typeof(Repository<>));
             ServiceRegistration.RegisterGeneric(typeof(IReadModeRepository<>), typeof(LocalFileReadModeRepository<>), new object[1] { "D:\\temp" }, Lifetime.Singleton);
         }
@@ -34,7 +34,6 @@ namespace DDD.Core
             RegisterCommandHandler(assembly);
             RegisterEventHandler(assembly);
             return this;
-
         }
         public BuilderOption RegisterCommandHandler(Assembly assembly)
         {

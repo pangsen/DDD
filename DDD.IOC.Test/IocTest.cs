@@ -104,15 +104,15 @@ namespace DDD.IOC.Test
         }
     }
     public interface IAA { }
-    public interface IA: IAA { }
+    public interface IA : IAA { }
     public class A : IA
     {
-        
+
     }
 
     public class B : A
     {
-        
+
     }
     public class IocTest
     {
@@ -125,7 +125,7 @@ namespace DDD.IOC.Test
             var type = typeof(B);
             Console.WriteLine(type.BaseType.Name);
             Console.WriteLine(type.BaseType.BaseType.Name);
-            Console.WriteLine(string.Join(",",type.GetInterfaces().Select(a=>a.Name)));
+            Console.WriteLine(string.Join(",", type.GetInterfaces().Select(a => a.Name)));
 
             //            var type = typeof(Repository<,,>);
             //            //            var type = new Repository<string, bool, int>().GetType();
@@ -153,6 +153,25 @@ namespace DDD.IOC.Test
             logger.Log("xxxxxxxxxxxxxxx");
             var worker = resolver.Resolve<Worker>();
             worker.Work();
+        }
+
+        public class B : A
+        {
+
+        }
+        public class A
+        {
+            private Guid _id { get; set; }
+
+            public Guid Id => _id;
+        }
+        [Test]
+        public void TestSetPrivateProperty()
+        {
+            var type = typeof(B);
+            var b = type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, new Type[] { }, null).Invoke(null);
+            type.BaseType.GetProperty("_id", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(b, Guid.NewGuid());
+            Console.WriteLine(b.GetType().Name);
         }
         private void Write(string str, object obj)
         {

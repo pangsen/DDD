@@ -35,9 +35,9 @@ namespace DDD.Core.Bus
 
         private void ApplyEventToUpdateReadModel<T>(T @event) where T : Message.Event
         {
-            foreach (var customAttribute in @event.GetType().GetCustomAttributes(typeof(ReadModelUpdaterAttribute), true))
+            foreach (var customAttribute in @event.GetType().GetCustomAttributes(typeof(ReadModelEventHandlerRegisterAttribute), true))
             {
-                var readModelUpdaterType = ((ReadModelUpdaterAttribute)customAttribute).ReadModelUpdaterType;
+                var readModelUpdaterType = ((ReadModelEventHandlerRegisterAttribute)customAttribute).ReadModelUpdaterType;
                 var updater = _resolver.Resolve(readModelUpdaterType);
                 updater.AsDynamic().ApplyEvent(@event);
             }

@@ -40,14 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonReadMode.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="CommandHandler\PersonChangeNameCommand.cs" />
-    <Compile Include="CommandHandler\PersonCreateCommandHandler.cs" />
-    <Compile Include="CommandHandler\PersonCreateCommand.cs" />
-    <Compile Include="Event\PersonCreatedEvent.cs" />
-    <Compile Include="Event\PersonNameEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TODO\Command\ArchiveToDoCommand.cs" />
+    <Compile Include="TODO\Command\CreateToDoCommand.cs" />
+    <Compile Include="TODO\Command\DoneToDoCommand.cs" />
+    <Compile Include="TODO\Command\EditToDoCommand.cs" />
+    <Compile Include="TODO\Status.cs" />
+    <Compile Include="TODO\ToDo.cs" />
+    <Compile Include="TODO\Event\ToDoArchiveEvent.cs" />
+    <Compile Include="TODO\CommandHandler\ToDoCommandHandler.cs" />
+    <Compile Include="TODO\Event\TodoCreatedEvent.cs" />
+    <Compile Include="TODO\Event\ToDoDoneEvent.cs" />
+    <Compile Include="TODO\Event\TodoEditedEvent.cs" />
+    <Compile Include="TODO\ReadModel\ToDoReadModel.cs" />
+    <Compile Include="TODO\ToDoStatus.cs" />
+    <Compile Include="TODO\Event\ToDoStatusChangedEvent.cs" />
+    <Compile Include="User\Event\NewToDoAddedEvent.cs" />
+    <Compile Include="User\User.cs" />
+    <Compile Include="User\CommandHandler\UserCommandHandle.cs" />
+    <Compile Include="User\ReadModel\UserReadModel.cs" />
+    <Compile Include="User\Event\UserRegistedEvent.cs" />
+    <Compile Include="User\Command\UserRegisterCommand.cs" />
+    <Compile Include="User\Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DDD.Core\DDD.Core.csproj">
@@ -55,6 +69,7 @@
       <Name>DDD.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

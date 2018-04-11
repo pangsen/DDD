@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateRoot.cs" />
+    <Compile Include="AggregateRootFactory.cs" />
     <Compile Include="BuilderOption.cs" />
+    <Compile Include="Bus\DomainActionHelper.cs" />
     <Compile Include="Bus\ICommandHandler.cs" />
     <Compile Include="Bus\IEventHandler.cs" />
     <Compile Include="QueryService\ReadMode.cs" />

@@ -7,11 +7,11 @@ namespace DDD.Core.QueryService
         public Guid Id { get; set; }
     }
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-    public class ReadModelUpdaterAttribute : Attribute
+    public class ReadModelEventHandlerRegisterAttribute : Attribute
     {
         public Type ReadModelUpdaterType { get; set; }
 
-        public ReadModelUpdaterAttribute(Type type)
+        public ReadModelEventHandlerRegisterAttribute(Type type)
         {
             ReadModelUpdaterType = type;
         }
