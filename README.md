@@ -19,8 +19,8 @@ var bus = resolver.Resolve&lt;IBus>();
 bus.Send(new UserRegisterCommand { AggregateId = personId, UserName = "Sam Pang", Password = "Password" });
 bus.Send(new CreateToDoCommand { AggregateId = Guid.NewGuid(), Title = "Todo Title", Description = "Todo Description", UserId = personId });
 //Query
-var userQueryService = resolver.Resolve&lt;QueryService<UserReadModel>>();
-var todoQueryService = resolver.Resolve&lt;QueryService<ToDoReadModel>>();
+var userQueryService = resolver.Resolve&lt;QueryService&lt;UserReadModel>>();
+var todoQueryService = resolver.Resolve&lt;QueryService&lt;ToDoReadModel>>();
 var persons = userQueryService.GetAll();
 
 persons.ForEach(a =>
