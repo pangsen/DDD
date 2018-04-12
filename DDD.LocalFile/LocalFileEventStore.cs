@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using DDD.Core;
 using DDD.Core.Bus;
+using DDD.Core.EventStore;
+using DDD.Core.Message;
 using Newtonsoft.Json;
 
-namespace DDD.Core.EventStore
+namespace DDD.LocalFile
 {
     public class LocalFileEventStore : IEventStore
     {
@@ -13,20 +17,20 @@ namespace DDD.Core.EventStore
         private readonly string _dir;
 
 
-        public LocalFileEventStore(IBus bus, string dir)
+        public LocalFileEventStore(IBus bus)
         {
             _bus = bus;
-            _dir = dir;
+            _dir = ConfigurationManager.AppSettings["EventStoreFilePath"]; ;
         }
 
-        public void Save<T>(Guid aggregateId, IEnumerable<Message.Event> events) where T : AggregateRoot
+        public void Save<T>(Guid aggregateId, IEnumerable<Event> events) where T : AggregateRoot
         {
-            List<Message.Event> aggregateEvents = new List<Message.Event>();
+            List<Event> aggregateEvents = new List<Event>();
             var path = $"{_dir}\\{typeof(T).Name}_{aggregateId}";
             if (File.Exists(path))
             {
                 var jsonSrt = File.ReadAllText(path);
-                aggregateEvents = JsonConvert.DeserializeObject<IEnumerable<Message.Event>>(jsonSrt,
+                aggregateEvents = JsonConvert.DeserializeObject<IEnumerable<Event>>(jsonSrt,
                     new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }).ToList();
             }
             aggregateEvents.AddRange(events);
@@ -36,18 +40,18 @@ namespace DDD.Core.EventStore
             PublishEvents(events);
         }
 
-        private void PublishEvents(IEnumerable<Message.Event> events)
+        private void PublishEvents(IEnumerable<Event> events)
         {
             foreach (var @event in events)
             {
                 _bus.Publish(@event);
             }
         }
-        public List<Message.Event> GetEventsForAggregate<T>(Guid aggregateId) where T : AggregateRoot
+        public List<Event> GetEventsForAggregate<T>(Guid aggregateId) where T : AggregateRoot
         {
             var path = $"{_dir}\\{typeof(T).Name}_{aggregateId}";
             var jsonSrt = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<IEnumerable<Message.Event>>(jsonSrt,
+            return JsonConvert.DeserializeObject<IEnumerable<Event>>(jsonSrt,
                 new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }).ToList();
         }
     }

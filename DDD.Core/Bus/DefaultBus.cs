@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using DDD.Core.Message;
 using DDD.Core.QueryService;
-using DDD.IOC;
+using IResolver = DDD.IOC.IResolver;
 
 namespace DDD.Core.Bus
 {

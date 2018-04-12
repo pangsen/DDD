@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1C834EEC-2D06-4F57-B41D-BC7502823EC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDD.MsSql.Domain</RootNamespace>
+    <AssemblyName>DDD.MsSql.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbContext\ReadModelDbContext.cs" />
+    <Compile Include="Migrations\201804120956126_init.cs" />
+    <Compile Include="Migrations\201804120956126_init.Designer.cs">
+      <DependentUpon>201804120956126_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TODO\CommandHandler\ToDoCommandHandler.cs" />
+    <Compile Include="TODO\Command\ArchiveToDoCommand.cs" />
+    <Compile Include="TODO\Command\CreateToDoCommand.cs" />
+    <Compile Include="TODO\Command\DoneToDoCommand.cs" />
+    <Compile Include="TODO\Command\EditToDoCommand.cs" />
+    <Compile Include="TODO\Event\ToDoArchiveEvent.cs" />
+    <Compile Include="TODO\Event\TodoCreatedEvent.cs" />
+    <Compile Include="TODO\Event\ToDoDoneEvent.cs" />
+    <Compile Include="TODO\Event\TodoEditedEvent.cs" />
+    <Compile Include="TODO\Event\ToDoStatusChangedEvent.cs" />
+    <Compile Include="TODO\ReadModel\ToDoReadModel.cs" />
+    <Compile Include="TODO\Status.cs" />
+    <Compile Include="TODO\ToDo.cs" />
+    <Compile Include="TODO\ToDoStatus.cs" />
+    <Compile Include="User\CommandHandler\UserCommandHandle.cs" />
+    <Compile Include="User\Command\UserRegisterCommand.cs" />
+    <Compile Include="User\Event\NewToDoAddedEvent.cs" />
+    <Compile Include="User\Event\UserRegistedEvent.cs" />
+    <Compile Include="User\ReadModel\UserReadModel.cs" />
+    <Compile Include="User\Service\UserService.cs" />
+    <Compile Include="User\User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Core\DDD.Core.csproj">
+      <Project>{451db83c-f7ac-4734-a21e-ee9837fa464b}</Project>
+      <Name>DDD.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.MsSql\DDD.MsSql.csproj">
+      <Project>{b72bc970-0053-45f1-8b4a-18438ac526a2}</Project>
+      <Name>DDD.MsSql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201804120956126_init.resx">
+      <DependentUpon>201804120956126_init.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

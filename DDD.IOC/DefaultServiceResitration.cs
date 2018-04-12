@@ -7,7 +7,9 @@ namespace DDD.IOC
     {
         private readonly Dictionary<Type, List<Registration>> _registrations = new Dictionary<Type, List<Registration>>();
         private readonly object _syncRoot = new object();
-        public void Register<TService, TImplementation>(object[] parameters=null, Lifetime lifetime = Lifetime.AlwaysUnique) where TService : class where TImplementation : class, TService
+       
+
+        public void Register<TService, TImplementation>( Lifetime lifetime = Lifetime.AlwaysUnique, object[] parameters = null) where TService : class where TImplementation : class, TService
         {
 
             Register(typeof(TService),
@@ -26,7 +28,7 @@ namespace DDD.IOC
         {
             Register(serviceType, new ConstructorFactory(serviceType), lifetime);
         }
-        public void RegisterGeneric(Type sreviceType, Type implementationType,object[] parameters=null, Lifetime lifetime = Lifetime.AlwaysUnique)
+        public void RegisterGeneric(Type sreviceType, Type implementationType, Lifetime lifetime = Lifetime.AlwaysUnique, object[] parameters = null)
         {
             Register(sreviceType, new GenericFactory(implementationType, parameters), lifetime);
         }
@@ -55,6 +57,11 @@ namespace DDD.IOC
         public IResolver CreateResolver()
         {
             return new DefaultResolver(_registrations);
+        }
+
+        public T GetContainer<T>() where T:class 
+        {
+            return _registrations as T;
         }
     }
 }

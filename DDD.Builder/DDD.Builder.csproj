@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D1BB38B-FF38-41E5-BACC-96A1EAD970DE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{85FAF612-9FBC-4F86-8559-B3A4A23B4266}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.ConsoleApp</RootNamespace>
-    <AssemblyName>DDD.ConsoleApp</AssemblyName>
+    <RootNamespace>DDD.Builder</RootNamespace>
+    <AssemblyName>DDD.Builder</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap, Version=4.6.1.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,32 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="BuilderOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DDD.Builder\DDD.Builder.csproj">
-      <Project>{85faf612-9fbc-4f86-8559-b3a4a23b4266}</Project>
-      <Name>DDD.Builder</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DDD.Core\DDD.Core.csproj">
       <Project>{451db83c-f7ac-4734-a21e-ee9837fa464b}</Project>
       <Name>DDD.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj">
-      <Project>{ca3c16aa-6024-49bd-ba99-22128ba2398f}</Project>
-      <Name>DDD.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DDD.IOC.StructureMap\DDD.IOC.StructureMap.csproj">
-      <Project>{3686856c-54b0-4943-9090-fbfaa31a8c5e}</Project>
-      <Name>DDD.IOC.StructureMap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DDD.IOC\DDD.IOC.csproj">
-      <Project>{453D698D-1797-4D39-AD12-A0EF5E3A48A3}</Project>
+      <Project>{453d698d-1797-4d39-ad12-a0ef5e3a48a3}</Project>
       <Name>DDD.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.LocalFile\DDD.LocalFile.csproj">
+      <Project>{f718e8e8-8d05-4196-9623-d4c2f4e82525}</Project>
+      <Name>DDD.LocalFile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

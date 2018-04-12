@@ -41,15 +41,6 @@ namespace DDD.IOC
         public IEnumerable<object> ResolveAll(Type serviceType)
         {
             List<Registration> registrations;
-//            var genericArguments = _emptyTypeArray;
-//            var typeInfo = serviceType.GetTypeInfo();
-//
-//            if (typeInfo.IsGenericType &&
-//                !_registrations.ContainsKey(serviceType))
-//            {
-//                genericArguments = typeInfo.GetGenericArguments();
-//                serviceType = typeInfo.MakeGenericType(genericArguments);
-//            }
             return _registrations.TryGetValue(serviceType, out registrations)
                 ? registrations.Select(a => a.Create(_resolverContext, _emptyTypeArray)) :
                 Enumerable.Empty<object>();

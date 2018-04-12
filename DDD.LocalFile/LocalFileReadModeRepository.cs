@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
+using DDD.Core.QueryService;
 using Newtonsoft.Json;
 
-namespace DDD.Core.QueryService
+namespace DDD.LocalFile
 {
     public class LocalFileReadModeRepository<T> : IReadModeRepository<T> where T : ReadMode
     {
         private readonly string _dir;
 
-        public LocalFileReadModeRepository(string dir = "D:\\temp")
+        public LocalFileReadModeRepository()
         {
-            _dir = dir;
+            _dir = ConfigurationManager.AppSettings["ReadModelFilePath"];
         }
 
         public IEnumerable<T> GetAll()
@@ -20,7 +22,7 @@ namespace DDD.Core.QueryService
             List<T> list = new List<T>();
             var filePaths = Directory.GetFiles(_dir).Where(a => a.StartsWith($"{_dir}\\{typeof(T).Name}"));
             foreach (var filePath in filePaths)
-            { 
+            {
                 var jsonStr = File.ReadAllText(filePath);
                 var readModel = JsonConvert.DeserializeObject<T>(jsonStr,
                     new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });

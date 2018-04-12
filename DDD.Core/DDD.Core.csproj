@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="AggregateRoot.cs" />
     <Compile Include="AggregateRootFactory.cs" />
-    <Compile Include="BuilderOption.cs" />
     <Compile Include="Bus\DomainActionHelper.cs" />
     <Compile Include="Bus\ICommandHandler.cs" />
     <Compile Include="Bus\IEventHandler.cs" />
@@ -61,8 +60,6 @@
     <Compile Include="PrivateReflectionDynamicObjectExtensions.cs" />
     <Compile Include="QueryService\IReadModeRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
-    <Compile Include="EventStore\LocalFileEventStore.cs" />
-    <Compile Include="QueryService\LocalFileReadModeRepository.cs" />
     <Compile Include="Message\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryService\QueryService.cs" />
@@ -77,6 +74,9 @@
       <Project>{453D698D-1797-4D39-AD12-A0EF5E3A48A3}</Project>
       <Name>DDD.IOC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validator\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
