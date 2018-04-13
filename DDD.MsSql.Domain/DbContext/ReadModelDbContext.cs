@@ -13,6 +13,7 @@ namespace DDD.MsSql.Domain.DbContext
         public DbSet<UserReadModel> Users { get; set; }
 
         public DbSet<ToDoReadModel> Todos { get; set; }
+
     }
 
 

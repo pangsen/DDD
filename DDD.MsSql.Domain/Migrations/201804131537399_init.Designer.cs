@@ -13,7 +13,7 @@ namespace DDD.MsSql.Domain.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201804120956126_init"; }
+            get { return "201804131537399_init"; }
         }
         
         string IMigrationMetadata.Source

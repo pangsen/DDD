@@ -1,6 +1,7 @@
 using System;
 using DDD.Core.QueryService;
 using DDD.MsSql.Domain.TODO.Event;
+using DDD.MsSql.Domain.User.ReadModel;
 
 namespace DDD.MsSql.Domain.TODO.ReadModel
 {
@@ -9,7 +10,6 @@ namespace DDD.MsSql.Domain.TODO.ReadModel
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime CreateTime { get; set; }
-//        public ToDoStatus Status { get; set; }
         public Guid Creater { get; set; }
 
         public void Apply(TodoCreatedEvent @event)
@@ -18,6 +18,7 @@ namespace DDD.MsSql.Domain.TODO.ReadModel
             Title = @event.Title;
             Description = @event.Description;
             Creater = @event.Creater;
+            CreateTime = DateTime.Now;
         }
 
         public void Apply(TodoEditedEvent @event)
@@ -26,14 +27,6 @@ namespace DDD.MsSql.Domain.TODO.ReadModel
             Description = @event.Description;
         }
 
-//        public void Apply(ToDoDoneEvent @event)
-//        {
-//            Status = @event.Status;
-//        }
-//
-//        public void Apply(ToDoArchiveEvent @event)
-//        {
-//            Status = @event.Status;
-//        }
+
     }
 }

@@ -52,7 +52,7 @@ namespace DDD.MsSql
         public List<Event> GetEventsForAggregate<T>(Guid aggregateId) where T : AggregateRoot
         {
             var jsonStr = _aggregateDbContext.Aggregates.Find(aggregateId)?.Events;
-            if (string.IsNullOrEmpty(jsonStr))
+            if (!string.IsNullOrEmpty(jsonStr))
             {
                 return JsonConvert.DeserializeObject<List<Event>>(jsonStr,
                     new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
