@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DDD.Builder;
 using DDD.Core;
@@ -13,7 +14,6 @@ namespace DDD.ConsoleApp
     {
         static void Main(string[] args)
         {
-
             var builderOption = BuilderOptions
                 .New()
                 .UseStructureMapRegistration()
